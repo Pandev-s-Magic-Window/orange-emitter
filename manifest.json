@@ -1,0 +1,11 @@
+{
+  "name": "Magic Window: The Orange Emitter",
+  "description": "Emits track changes/data to an external WebSocket server",
+  "preview": "preview.png",
+  "main": "mw-orange-emitter.js",
+  "readme": "README.md",
+  "branch": "rolling-release",
+  "authors": [
+    { "name": "pandev", "url": "https://github.com/la-pandev" }
+  ]
+}

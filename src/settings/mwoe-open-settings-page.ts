@@ -1,0 +1,94 @@
+import type {MwoeAppState} from "../app/mwoe-app-state";
+
+// There is probably a better way to do this, but it works for now
+export function mwoeOpenSettingsPage(app_state: MwoeAppState) {
+  const active_emission_mode_selected_attr =
+    app_state.emission_mode.value === 'active' ? ' selected': '';
+
+  const passive_emission_mode_selected_attr =
+    app_state.emission_mode.value === 'passive' ? ' selected': '';
+
+  Spicetify.PopupModal.display({
+    title: "Magic Window: The Orange Emitter · Settings",
+    isLarge: true,
+    content: `
+        <div>
+            <label for="mwOrangeEmitterMode" style="font-size: 1.1em">Emission Mode:</label>
+            <select name="mwOrangeEmitterMode"
+              required
+              style="
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #6d6d6d;
+                background-color: #000000;
+                color: #ffffff;
+                width: 100%;
+                margin-bottom: 5px;
+              "
+            >
+              <option value="active"${active_emission_mode_selected_attr}>Active</option>
+              <option value="passive"${passive_emission_mode_selected_attr}>Passive</option>
+            </select>
+               <div style="font-size: 0.9em; margin-bottom: 15px;">
+                 <span style="color: #ffab7d; font-weight: bold;">Active Mode:</span>
+                 <br>- When a track change is detected, track data will be emitted immediately to the WebSocket server.
+                 <br>
+                 <span style="color: #fff7a7; font-weight: bold;">Passive Mode:</span>
+                 <br>· The WebSocket server has to request the current track data by sending a message.
+                 <br>· Track changes/data will not be emitted automatically.
+            </div>
+              <button type="submit" onclick="mwoeRequestSettingChangeEmissionMode(this)"
+              onmouseenter="if(!this.disabled) this.style.backgroundColor='#333333'"
+              onmouseleave="if(!this.disabled) this.style.backgroundColor='#515151'"
+              style="
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #6d6d6d;
+                background-color: #515151;
+                color: #ffffff;
+                width: 100%;
+                font-size: 1em;
+                cursor: pointer;
+                margin-bottom: 30px;
+            ">
+                Change Emission Mode
+            </button>
+            <br>
+            <hr>
+            <br>
+            <label for="mwOrangeEmitterWsServerPort" style="font-size: 1.1em">WebSocket Connection URL:</label>
+            <input type="text" name="mwOrangeEmitterWsServerPort"
+              placeholder="E.g.: ${app_state.ws_server_config.connection_url.default_value}"
+              value="${app_state.ws_server_config.connection_url.current_value}"
+              style="
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #6d6d6d;
+                background-color: #000000;
+                color: #ffffff;
+                width: 100%;
+                margin-bottom: 5px;
+            "/>
+            <div style="font-size: 0.9em; margin-bottom: 15px;">
+                In order to verify that a given URL is valid, a test connection is initiated.
+                Make sure your WebSocket server is up and running before trying to change this setting.
+            </div>
+            <button type="submit" onclick="mwoeRequestSettingChangeWsServerConnectionUrl(this)"
+              onmouseenter="if(!this.disabled) this.style.backgroundColor='#333333'"
+              onmouseleave="if(!this.disabled) this.style.backgroundColor='#515151'"
+              style="
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #6d6d6d;
+                background-color: #515151;
+                color: #ffffff;
+                width: 100%;
+                font-size: 1em;
+                cursor: pointer;
+            ">
+                Run Test and Change Connection URL
+            </button>
+        </div>
+    `
+  });
+}

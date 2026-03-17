@@ -1,0 +1,20 @@
+{
+  "name": "magic-window-orange-emitter",
+  "module": "src/app.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "bun ./bun/build.ts",
+    "apply": "bun run build && bun ./bun/apply.ts",
+    "server": "bun src/ws-server/mockup-server.ts --port 6603"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "rxjs": "7.8.2"
+  }
+}
