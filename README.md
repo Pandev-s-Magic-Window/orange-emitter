@@ -10,7 +10,7 @@ Spicetify extension that emits track changes/data to an external WebSocket serve
 ## Main Features
 
 ### ⚙️ Point to any WebSocket server:
-Use the extension's default [connection URL](https://developer.mozilla.org) (`ws://localhost:6603`) or point to your own URL.
+Use the extension's default [connection URL](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket) (`ws://localhost:6603`) or point to your own URL.
 
 ---
 
