@@ -36,4 +36,4 @@ Once installed, the extension will continuously try to reach your server at 1-se
 ---
 
 > [!NOTE]  
-> This branch is for **build artifacts only**. If you are looking for the source code, please visit the [main repo.](https://github.com)
+> This branch is for **build artifacts only**. If you are looking for the source code, please visit the [main repo.](https://github.com/Pandev-s-Magic-Window/get-track-info-orange)
