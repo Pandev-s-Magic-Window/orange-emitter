@@ -1,6 +1,6 @@
 ✨ Part of the Magic Window series:
 # Get Track Info (Orange Edition)
-Spicetify extension that Emits track changes/data to an external WebSocket server.
+Spicetify extension that emits track changes/data to an external WebSocket server.
 
 <br>
 
