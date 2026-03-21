@@ -1,4 +1,4 @@
-export function mwoeChangeSubmitButtonState(
+export function changeSubmitButtonState(
   submit_button_el: HTMLButtonElement,
   action: 'applying' | 'error' | 'success',
   error_message?: string

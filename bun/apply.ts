@@ -12,7 +12,7 @@ if (!existsSync(build_artifacts_path)) {
   process.exit(1);
 }
 
-const prod_js_path = Bun.file(path.join(build_artifacts_path, 'app.js'));
+const prod_js_path = Bun.file(path.join(build_artifacts_path, 'mw-get-track-info-orange.js'));
 if (!await prod_js_path.exists()) {
   console.log(`${error_message_base} Missing build artifact.`);
   process.exit(1);
@@ -42,8 +42,8 @@ if (spicetify_extensions_path == null) {
   process.exit(1);
 }
 
-await Bun.write(path.join(spicetify_extensions_path, 'mw-orange-emitter.js'), prod_js_path);
+await Bun.write(path.join(spicetify_extensions_path, 'mw-get-track-info-orange.js'), prod_js_path);
 
 await $`spicetify enable-devtools`;
-await $`spicetify config extensions mw-orange-emitter.js`;
+await $`spicetify config extensions mw-get-track-info-orange.js`;
 await $`spicetify apply`;

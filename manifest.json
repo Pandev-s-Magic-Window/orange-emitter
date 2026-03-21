@@ -1,8 +1,8 @@
 {
-  "name": "Magic Window: The Orange Emitter",
+  "name": "Get Track Info",
   "description": "Emits track changes/data to an external WebSocket server",
   "preview": "preview.png",
-  "main": "mw-orange-emitter.js",
+  "main": "mw-get-track-info-orange.js",
   "readme": "README.md",
   "branch": "rolling-release",
   "authors": [

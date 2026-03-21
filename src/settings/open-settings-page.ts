@@ -1,20 +1,27 @@
-import type {MwoeAppState} from "../app/mwoe-app-state";
+import type {AppState} from "../app/app-state";
+import {SettingsGlobalScopeHelper} from "./settings-global-scope-helper";
 
 // There is probably a better way to do this, but it works for now
-export function mwoeOpenSettingsPage(app_state: MwoeAppState) {
+export function openSettingsPage(app_state: AppState) {
   const active_emission_mode_selected_attr =
-    app_state.emission_mode.value === 'active' ? ' selected': '';
+    app_state.emission_mode.value === 'active' ? ' selected' : '';
 
   const passive_emission_mode_selected_attr =
-    app_state.emission_mode.value === 'passive' ? ' selected': '';
+    app_state.emission_mode.value === 'passive' ? ' selected' : '';
+
+  const change_mode_fn_str =
+    SettingsGlobalScopeHelper.getFullyQualifiedNameForMemberFn("changeEmissionMode");
+
+  const change_connection_uri_fn_str =
+    SettingsGlobalScopeHelper.getFullyQualifiedNameForMemberFn("changeWsServerConnectionUrl");
 
   Spicetify.PopupModal.display({
-    title: "Magic Window: The Orange Emitter · Settings",
+    title: "Get Track Info · Settings",
     isLarge: true,
     content: `
         <div>
-            <label for="mwOrangeEmitterMode" style="font-size: 1.1em">Emission Mode:</label>
-            <select name="mwOrangeEmitterMode"
+            <label for="mwGtiOrangeMode" style="font-size: 1.1em">Emission Mode:</label>
+            <select name="mwGtiOrangeMode"
               required
               style="
                 padding: 10px;
@@ -37,7 +44,7 @@ export function mwoeOpenSettingsPage(app_state: MwoeAppState) {
                  <br>· The WebSocket server has to request the current track data by sending a message.
                  <br>· Track changes/data will not be emitted automatically.
             </div>
-              <button type="submit" onclick="mwoeRequestSettingChangeEmissionMode(this)"
+              <button type="submit" onclick="${change_mode_fn_str}(this)"
               onmouseenter="if(!this.disabled) this.style.backgroundColor='#333333'"
               onmouseleave="if(!this.disabled) this.style.backgroundColor='#515151'"
               style="
@@ -56,8 +63,8 @@ export function mwoeOpenSettingsPage(app_state: MwoeAppState) {
             <br>
             <hr>
             <br>
-            <label for="mwOrangeEmitterWsServerPort" style="font-size: 1.1em">WebSocket Connection URL:</label>
-            <input type="text" name="mwOrangeEmitterWsServerPort"
+            <label for="mwGtiOrangeWsServerPort" style="font-size: 1.1em">WebSocket Connection URL:</label>
+            <input type="text" name="mwGtiOrangeWsServerPort"
               placeholder="E.g.: ${app_state.ws_server_config.connection_url.default_value}"
               value="${app_state.ws_server_config.connection_url.current_value}"
               style="
@@ -73,7 +80,7 @@ export function mwoeOpenSettingsPage(app_state: MwoeAppState) {
                 In order to verify that a given URL is valid, a test connection is initiated.
                 Make sure your WebSocket server is up and running before trying to change this setting.
             </div>
-            <button type="submit" onclick="mwoeRequestSettingChangeWsServerConnectionUrl(this)"
+            <button type="submit" onclick="${change_connection_uri_fn_str}(this)"
               onmouseenter="if(!this.disabled) this.style.backgroundColor='#333333'"
               onmouseleave="if(!this.disabled) this.style.backgroundColor='#515151'"
               style="

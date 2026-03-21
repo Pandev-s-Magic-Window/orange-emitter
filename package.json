@@ -1,11 +1,12 @@
 {
-  "name": "magic-window-orange-emitter",
+  "name": "magic-window-get-track-info-orange",
+  "version": "1.1.0",
   "module": "src/app.ts",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "bun ./bun/build.ts",
-    "apply": "bun run build && bun ./bun/apply.ts",
+    "apply": "bun ./bun/apply.ts",
     "server": "bun src/ws-server/mockup-server.ts --port 6603"
   },
   "devDependencies": {
