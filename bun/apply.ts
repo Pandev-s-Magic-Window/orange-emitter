@@ -6,7 +6,7 @@ import {$} from "bun";
 const error_message_base = "Could not load build artifact into Spicetify!";
 
 const root_dir_project = path.resolve(import.meta.dirname, '..');
-const build_artifacts_path = path.join(root_dir_project, '.build-artifacts');
+const build_artifacts_path = path.join(root_dir_project, 'dist');
 if (!existsSync(build_artifacts_path)) {
   console.log(`${error_message_base} Build artifact directory not found.`);
   process.exit(1);
