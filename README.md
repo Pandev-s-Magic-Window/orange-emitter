@@ -23,7 +23,8 @@ Automatically pushes track data to the server whenever there is a track change. 
 Will not emit automatically/on track change, instead the server has to query for new data by sending a message to the extension.
 
 > [!TIP]
-> Send a JSON message with a request ID to easily match requests and responses, like this: `{"request_id": "YOUR_REQUEST_ID"}`<br>
+> Send a JSON message with a request ID to easily match requests and responses, like this:<br>
+> `{"request_id": "YOUR_REQUEST_ID"}`<br>
 > E.g. (sending a request with ID from a C# WebSocket server):<br>
 > `wsServer.SendAsync(wsClientGuid, "{\"request_id\":\"" + YOUR_ID_HERE + "\"}");`
 
