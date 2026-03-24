@@ -5619,7 +5619,8 @@ async function getTrackInfoFromGraphql(app_state, track_id, track_data) {
       album_id: res.data.trackUnion.albumOfTrack.id,
       album_name: res.data.trackUnion.albumOfTrack.name,
       artist_name: main_artist,
-      artist_full: artist_full_list.join(", ")
+      artist_full: artist_full_list.join(", "),
+      extra_data: raw_res
     };
   } catch (e) {
     app_state.logger("Tried to get enhanced track data from URL but failed (using original data now): ", e);
@@ -5678,7 +5679,11 @@ class TrackInfo {
     } else {
       album_name = player_track?.album?.name ?? "UNKNOWN_ALBUM_NAME";
     }
-    return new TrackInfo(track_id.replace("spotify:track:", ""), player_track?.name ?? "UNKNOWN_TRACK_NAME", player_track?.duration?.milliseconds ?? -1, player_track?.isExplicit ?? false, album_id.replace("spotify:album:", ""), album_name, main_artist, artist_full, include_extra_data ? player_track : undefined);
+    let extra_data = undefined;
+    if (include_extra_data && track_data_from_graphql != null) {
+      extra_data = track_data_from_graphql.extra_data;
+    }
+    return new TrackInfo(track_id.replace("spotify:track:", ""), player_track?.name ?? "UNKNOWN_TRACK_NAME", player_track?.duration?.milliseconds ?? -1, player_track?.isExplicit ?? false, album_id.replace("spotify:album:", ""), album_name, main_artist, artist_full, extra_data);
   }
 }
 
