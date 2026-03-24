@@ -57,7 +57,9 @@ export async function getTrackInfoFromGraphql(
       album_name: res.data.trackUnion.albumOfTrack.name,
 
       artist_name: main_artist,
-      artist_full: artist_full_list.join(", ")
+      artist_full: artist_full_list.join(", "),
+
+      extra_data: raw_res
     }
   } catch (e) {
     app_state.logger("Tried to get enhanced track data from URL but failed (using original data now): ", e)

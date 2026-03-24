@@ -58,6 +58,12 @@ export class TrackInfo {
       album_name = player_track?.album?.name ?? "UNKNOWN_ALBUM_NAME"
     }
 
+    let extra_data: unknown = undefined;
+    if (include_extra_data && track_data_from_graphql != null) {
+      extra_data = track_data_from_graphql.extra_data;
+    }
+
+
     return new TrackInfo(
       track_id.replace("spotify:track:", ""),
       player_track?.name ?? "UNKNOWN_TRACK_NAME",
@@ -67,7 +73,7 @@ export class TrackInfo {
       album_name,
       main_artist,
       artist_full,
-      include_extra_data ? player_track : undefined
+      extra_data
     )
   }
 }

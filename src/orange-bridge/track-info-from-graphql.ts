@@ -5,5 +5,7 @@ export type TrackInfoFromGraphql = {
   artist_full: string,
 
   album_id: string,
-  album_name: string
+  album_name: string,
+
+  extra_data: unknown
 };
